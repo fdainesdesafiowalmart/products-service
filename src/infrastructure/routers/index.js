@@ -2,11 +2,9 @@ const express = require('express');
 const router = express.Router();
 
 const { healthCheck } = require('../controllers/health')
+const { productsController } = require('../controllers/products')
 
 router.get('/health', healthCheck)
-
-router.get('/products', function(req, res) {
-  res.send('About birds');
-});
+router.get('/products', productsController)
 
 module.exports = router;

@@ -1,13 +1,13 @@
 const { Response } = require('jest-express/lib/response')
 
-const { healthCheck } = require('infrastructure/controllers/health')
+const { productsController } = require('infrastructure/controllers/products')
 
-describe('Controllers:Health', () => {
+describe('Controllers:Products', () => {
   it('should response with status code 200', async () => {
     const response = new Response()
     const nextMock = jest.fn();
 
-    healthCheck({}, response, nextMock);
+    productsController({}, response, nextMock);
 
     expect(response.status).toBeCalledWith(200)
   })
@@ -16,7 +16,7 @@ describe('Controllers:Health', () => {
     const response = new Response()
     const nextMock = jest.fn();
 
-    healthCheck({}, response, nextMock);
+    productsController({}, response, nextMock);
 
     expect(nextMock).toBeCalledWith()
   })
