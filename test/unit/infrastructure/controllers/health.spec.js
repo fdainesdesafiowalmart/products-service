@@ -1,6 +1,6 @@
 const { Response } = require('jest-express/lib/response')
 
-const { healthCheck } = require('../../../../src/infrastructure/controllers/health')
+const { healthCheck } = require('infrastructure/controllers/health')
 
 describe('Controllers:Health', () => {
   it('should test that true === true', async () => {

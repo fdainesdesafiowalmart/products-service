@@ -1,5 +1,5 @@
 const request = require('supertest')
-const app = require('../../src')
+const app = require('index')
 
 describe('Health Endpoint', () => {
   afterEach(async () => await app.close())
