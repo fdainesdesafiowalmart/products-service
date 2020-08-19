@@ -1,3 +1,10 @@
+jest.mock('infrastructure/core/dbconnector')
+const mongooseMock = require('infrastructure/core/dbconnector')
+
+mongooseMock.connect.mockImplementation(() => {
+  return true
+})
+
 const request = require('supertest')
 const app = require('index')
 

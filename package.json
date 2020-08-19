@@ -5,7 +5,9 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
-    "test": "jest --coverage --verbose --maxWorkers=1",
+    "test": "jest --coverage --verbose --maxWorkers=1  --watchAll=false",
+    "test:integration": "jest integration --coverage --verbose --maxWorkers=1  --watchAll=false",
+    "test:unit": "jest unit --coverage --verbose --maxWorkers=1  --watchAll=false",
     "linter": "standard",
     "linter:fix": "standard --fix"
   },
@@ -26,6 +28,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "mongoose": "^5.10.0",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
