@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
-    "test": "jest --coverage --verbose",
+    "test": "jest --coverage --verbose --maxWorkers=1",
     "linter": "standard",
     "linter:fix": "standard --fix"
   },

@@ -1,6 +1,6 @@
 const healthCheck = (req, res, next) => {
   res.status(200).send()
-  return next();
-};
+  return next()
+}
 
-module.exports = { healthCheck };
+module.exports = { healthCheck }

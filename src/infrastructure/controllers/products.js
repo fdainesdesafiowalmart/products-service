@@ -1,6 +1,11 @@
-const productsController = (req, res, next) => {
+const getProducts = (req, res, next) => {
   res.status(200).send()
-  return next();
-};
+  return next()
+}
 
-module.exports = { productsController };
+const getProduct = (req, res, next) => {
+  res.status(200).send()
+  return next()
+}
+
+module.exports = { getProducts, getProduct }
