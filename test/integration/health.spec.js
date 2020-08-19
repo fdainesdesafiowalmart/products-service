@@ -1,10 +1,10 @@
 const request = require('supertest')
 const app = require('../../src')
 
-describe('Sample Test', () => {
+describe('Health Endpoint', () => {
   afterEach(async () => await app.close())
 
-  it('should test that true === true', async () => {
+  it('should return status code 200', async () => {
     const res = await request(app)
       .get('/health')
 
