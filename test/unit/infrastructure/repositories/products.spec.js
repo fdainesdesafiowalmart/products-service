@@ -6,10 +6,18 @@ describe('Repositories:Products', () => {
   describe('findProductById', () => {
     it('should return mongoose response', async () => {
       const expectedResponse = {
-        foo: 'bar'
+        id: 999,
+        brand: 'pyu endkewc',
+        description: 'nror djnomitn',
+        image: 'www.lider.cl/catalogo/images/toysIcon.svg',
+        price: 805698
+      }
+      const returnedFromMongo = {
+        _id: 'foobar',
+        ...expectedResponse
       }
 
-      productMock.Product.findOne.mockImplementation(() => expectedResponse)
+      productMock.Product.findOne.mockImplementation(() => returnedFromMongo)
 
       const response = await findProductById(1234)
 
@@ -34,10 +42,22 @@ describe('Repositories:Products', () => {
   describe('findProducts', () => {
     it('should return mongoose response', async () => {
       const expectedResponse = [{
-        foo: 'bar'
+        id: 999,
+        brand: 'pyu endkewc',
+        description: 'nror djnomitn',
+        image: 'www.lider.cl/catalogo/images/toysIcon.svg',
+        price: 805698
+      }]
+      const returnedFromMongo = [{
+        _id: 'foobar',
+        id: 999,
+        brand: 'pyu endkewc',
+        description: 'nror djnomitn',
+        image: 'www.lider.cl/catalogo/images/toysIcon.svg',
+        price: 805698
       }]
 
-      productMock.Product.find.mockImplementation(() => expectedResponse)
+      productMock.Product.find.mockImplementation(() => returnedFromMongo)
 
       const response = await findProducts('foobar')
 
