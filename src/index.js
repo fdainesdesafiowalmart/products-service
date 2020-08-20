@@ -1,9 +1,11 @@
+const router = require('./infrastructure/routers')
 const app = require('./infrastructure/core/server')
 const mongoose = require('./infrastructure/core/dbconnector')
 const config = require('./infrastructure/core/config')
-const router = require('./infrastructure/routers')
+const swaggerRouter = require('./infrastructure/core/swagger')
 
 app.use('/', router)
+app.use('/api-doc', swaggerRouter)
 
 const server = app.listen(config.application.port, () => {
   mongoose.connect()
