@@ -3,14 +3,17 @@ const { Response } = require('jest-express/lib/response')
 const { getProduct, getProducts } = require('infrastructure/controllers/products')
 
 jest.mock('application/use_cases/retrieveproduct')
-const mockUseCase = require('application/use_cases/retrieveproduct')
+const mockRetrieveProductUseCase = require('application/use_cases/retrieveproduct')
+
+jest.mock('application/use_cases/retrieveproducts')
+const mockRetrieveProductsUseCase = require('application/use_cases/retrieveproducts')
 
 describe('Controllers:Products', () => {
-  beforeEach(() => mockUseCase.retrieveProduct.mockClear())
-
   describe('getProduct', () => {
+    beforeEach(() => mockRetrieveProductUseCase.retrieveProduct.mockClear())
+
     it('should response with status code 200 when product exists', async () => {
-      mockUseCase.retrieveProduct.mockImplementation((id) => {
+      mockRetrieveProductUseCase.retrieveProduct.mockImplementation((id) => {
         return { foo: 'bar' }
       })
 
@@ -29,7 +32,7 @@ describe('Controllers:Products', () => {
     })
 
     it('should response with status code 400 when product does not exist', async () => {
-      mockUseCase.retrieveProduct.mockImplementation((id) => {
+      mockRetrieveProductUseCase.retrieveProduct.mockImplementation((id) => {
         return undefined
       })
 
@@ -48,7 +51,7 @@ describe('Controllers:Products', () => {
     })
 
     it('should call next function', async () => {
-      mockUseCase.retrieveProduct.mockImplementation((id) => {
+      mockRetrieveProductUseCase.retrieveProduct.mockImplementation((id) => {
         return { foo: 'bar' }
       })
 
@@ -67,20 +70,40 @@ describe('Controllers:Products', () => {
   })
 
   describe('getProducts', () => {
+    beforeEach(() => mockRetrieveProductsUseCase.retrieveProducts.mockClear())
+
     it('should response with status code 200', async () => {
+      mockRetrieveProductsUseCase.retrieveProducts.mockImplementation(() => {
+        return [{ foo: 'bar' }]
+      })
+
+      const request = {
+        query: {
+          pattern: 'foobar'
+        }
+      }
       const response = new Response()
       const nextMock = jest.fn();
 
-      getProducts({}, response, nextMock);
+      await getProducts(request, response, nextMock);
 
       expect(response.status).toBeCalledWith(200)
     })
 
     it('should call next function', async () => {
+      mockRetrieveProductsUseCase.retrieveProducts.mockImplementation(() => {
+        return [{ foo: 'bar' }]
+      })
+
+      const request = {
+        query: {
+          pattern: 'foobar'
+        }
+      }
       const response = new Response()
       const nextMock = jest.fn();
 
-      getProducts({}, response, nextMock);
+      await getProducts(request, response, nextMock);
 
       expect(nextMock).toBeCalledWith()
     })

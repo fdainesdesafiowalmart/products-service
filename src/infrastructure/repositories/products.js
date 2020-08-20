@@ -8,4 +8,30 @@ const findProductById = async (id) => {
   }
 }
 
-module.exports = { findProductById }
+const findProducts = async (pattern) => {
+  try {
+    const query = {
+      $or: [
+        {
+          brand: {
+            $regex: `${pattern}`
+          }
+        },
+        {
+          description: {
+            $regex: `${pattern}`
+          }
+        }
+      ]
+    }
+
+    return await Product.find(query)
+  } catch (error) {
+    return []
+  }
+}
+
+module.exports = {
+  findProductById,
+  findProducts
+}
