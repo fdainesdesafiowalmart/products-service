@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
+const { checkApiKey } = require('../middlewares/checkapikey')
 const { healthCheck } = require('../controllers/health')
 const { getProduct, getProducts } = require('../controllers/products')
 
@@ -46,7 +47,7 @@ router.get('/health', healthCheck)
 *       '404':
 *         description: A failed response, there are no product with the provided ID
 */
-router.get('/products/:id', getProduct)
+router.get('/products/:id', checkApiKey, getProduct)
 
 /**
 * @swagger
@@ -84,6 +85,6 @@ router.get('/products/:id', getProduct)
 *                     type: integer
 *                     description: The product price
 */
-router.get('/products', getProducts)
+router.get('/products', checkApiKey, getProducts)
 
 module.exports = router
