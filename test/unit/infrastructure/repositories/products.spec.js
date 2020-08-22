@@ -57,9 +57,13 @@ describe('Repositories:Products', () => {
         price: 805698
       }]
 
-      productMock.Product.find.mockImplementation(() => returnedFromMongo)
+      productMock.Product.find.mockImplementation(() => {
+        return {
+          sort: jest.fn(() => returnedFromMongo)
+        }
+      })
 
-      const response = await findProducts('foobar')
+      const response = await findProducts('foobar', 'brand')
 
       expect(response).toStrictEqual(expectedResponse)
     })

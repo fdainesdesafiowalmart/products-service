@@ -3,9 +3,9 @@ const { retrieveProducts } = require('../../application/use_cases/retrieveproduc
 const productsRepository = require('../repositories/products')
 
 const getProducts = async (req, res, next) => {
-  const { query } = req
+  const { pattern, orderby } = req.query
 
-  const products = await retrieveProducts(productsRepository, query.pattern)
+  const products = await retrieveProducts(productsRepository, pattern, orderby)
 
   const response = {
     total: products.length,

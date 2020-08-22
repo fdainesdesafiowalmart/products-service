@@ -16,7 +16,7 @@ describe('Application:UseCases:RetrieveProducts', () => {
     expect(products).toStrictEqual([{ id: 100, foo: 'bar' }])
   })
 
-  it('should call repository with pattern', async () => {
+  it('should call repository with pattern and sort criteria', async () => {
     const repositoryMock = {
       findProducts: jest.fn((id) => {
         return {
@@ -26,9 +26,9 @@ describe('Application:UseCases:RetrieveProducts', () => {
       })
     }
 
-    const product = await retrieveProducts(repositoryMock, 100)
+    const product = await retrieveProducts(repositoryMock, 100, 'brand')
 
-    expect(repositoryMock.findProducts).toHaveBeenCalledWith(100)
+    expect(repositoryMock.findProducts).toHaveBeenCalledWith(100, 'brand')
   })
 
   it('should return empty array when call to repository fails', async () => {

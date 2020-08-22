@@ -1,5 +1,5 @@
 const { Product } = require('../orm/mongoose/product')
-const { translateProduct } = require('./translator')
+const { translateProduct, toSortPattern } = require('./translator')
 
 const findProductById = async (id) => {
   try {
@@ -12,7 +12,7 @@ const findProductById = async (id) => {
   }
 }
 
-const findProducts = async (pattern) => {
+const findProducts = async (pattern, orderby) => {
   try {
     const query = {
       $or: [
@@ -28,9 +28,10 @@ const findProducts = async (pattern) => {
         }
       ]
     }
+    const sortPattern = toSortPattern(orderby)
 
-    const products = await Product.find(query)
-
+    const products = await Product.find(query).sort(sortPattern)
+    
     return products.map(product => translateProduct(product))
   } catch (error) {
     return []

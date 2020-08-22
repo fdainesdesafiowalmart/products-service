@@ -8,4 +8,15 @@ const translateProduct = (product) => {
   }
 }
 
-module.exports = { translateProduct }
+const toSortPattern = (orderby) => {
+  if(orderby === 'brand') return { brand: 1 }
+  if(orderby === 'description') return { description: 1 }
+  if(orderby === 'price') return { price: 1 }
+
+  return { id: 1 }  
+}
+
+module.exports = {
+  translateProduct,
+  toSortPattern
+}

@@ -1,6 +1,6 @@
-const retrieveProducts = async ({ findProducts }, pattern) => {
+const retrieveProducts = async ({ findProducts }, pattern, orderby) => {
   try {
-    return await findProducts(pattern)
+    return await findProducts(pattern, orderby)
   } catch (error) {
     return []
   }
