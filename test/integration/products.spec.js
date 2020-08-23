@@ -15,6 +15,8 @@ const request = require('supertest')
 const app = require('index')
 
 describe('Products Endpoint', () => {
+  const servicePrefix = '/products-service/v1'
+
   afterEach(async () => await app.close())
 
   describe('GET /products/:id', () => {
@@ -27,7 +29,7 @@ describe('Products Endpoint', () => {
       apiKeyMock.isValidApiKey.mockImplementation(() => true)
 
       const res = await request(app)
-        .get('/products/1234')
+        .get(servicePrefix + '/products/1234')
 
       expect(res.statusCode).toEqual(200)
       expect(res.body).toEqual(resolvedProduct)
@@ -39,7 +41,7 @@ describe('Products Endpoint', () => {
       apiKeyMock.isValidApiKey.mockImplementation(() => true)
 
       const res = await request(app)
-        .get('/products/1234')
+        .get(servicePrefix + '/products/1234')
 
       expect(res.statusCode).toEqual(404)
       expect(res.body).toEqual({ message: "Product does not exist"})
@@ -53,7 +55,7 @@ describe('Products Endpoint', () => {
       apiKeyMock.isValidApiKey.mockImplementation(() => true)
 
       const res = await request(app)
-        .get('/products/1234')
+        .get(servicePrefix + '/products/1234')
 
       expect(res.statusCode).toEqual(404)
       expect(res.body).toEqual({ message: "Product does not exist"})
@@ -79,7 +81,7 @@ describe('Products Endpoint', () => {
       }
 
       const res = await request(app)
-        .get('/products')
+        .get(servicePrefix + '/products')
 
       expect(res.statusCode).toEqual(200)
       expect(res.body).toStrictEqual(expectedResponse)
@@ -97,7 +99,7 @@ describe('Products Endpoint', () => {
       apiKeyMock.isValidApiKey.mockImplementation(() => false)
 
       const res = await request(app)
-        .get('/products')
+        .get(servicePrefix + '/products')
 
       expect(res.statusCode).toEqual(401)
     })

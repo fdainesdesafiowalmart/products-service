@@ -25,7 +25,7 @@ $ npm run start
 
 To check the service status, you can execute a GET request to the health endpoint
 
-    curl -i http://localhost:3000/health
+    curl -i http://localhost:3000/products-service/v1/health
 
 If the service is running, then the response should be something like:
 
