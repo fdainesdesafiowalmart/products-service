@@ -39,13 +39,6 @@ If the service is running, then the response should be something like:
     Via: 1.1 vegur
 
 
-| Variable             | Description          |
-| -------------------- |:--------------------:|
-| **MONGODB_URI**      | MongoDB URI String   |
-| **MONGODB_USER**     | MongoDB User         |
-| **MONGODB_PASSWORD** | MongoDB Password     |
-
-
 ## Test the service
 To run the unit tests, executo this command
 ```sh
